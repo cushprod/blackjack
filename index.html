@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provably Fair Blackjack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Provably Fair Blackjack</h1>
+        </header>
+
+        <div class="game-info">
+            <div class="hash-section">
+                <div class="hash-display">
+                    <label for="hand-hash">El Başlangıcı Hash:</label>
+                    <div class="hash-container">
+                        <input type="text" id="hand-hash" readonly>
+                        <button id="copy-hash" aria-label="Hash'i kopyala" title="Hash'i kopyala">📋</button>
+                    </div>
+                </div>
+                <div class="seed-section">
+                    <label for="seed-input">Tohum (İsteğe Bağlı):</label>
+                    <input type="text" id="seed-input" placeholder="Rastgele tohum girin...">
+                </div>
+                <button id="new-hand" class="btn btn-primary">Yeni El</button>
+            </div>
+
+            <div class="balance-section">
+                <div class="balance-display">
+                    <span>Bakiye: </span>
+                    <span id="balance">1000</span>
+                    <span> ₺</span>
+                </div>
+                <div class="bet-controls">
+                    <label for="bet-input">Bahis:</label>
+                    <input type="number" id="bet-input" min="1" max="1000" value="25">
+                    <div class="quick-bet">
+                        <button class="btn btn-small" data-bet="25">25₺</button>
+                        <button class="btn btn-small" data-bet="50">50₺</button>
+                        <button class="btn btn-small" data-bet="100">100₺</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table">
+            <div class="dealer-area">
+                <div class="player-section" id="dealer-section">
+                    <h3>Krupiye</h3>
+                    <div class="cards" id="dealer-cards"></div>
+                    <div class="total" id="dealer-total">0</div>
+                </div>
+            </div>
+
+            <div class="players-area">
+                <div class="player-section active" id="player-section">
+                    <h3>Sen</h3>
+                    <div class="cards" id="player-cards"></div>
+                    <div class="total" id="player-total">0</div>
+                </div>
+                
+                <div class="player-section" id="bot2-section">
+                    <h3>Bot 2</h3>
+                    <div class="cards" id="bot2-cards"></div>
+                    <div class="total" id="bot2-total">0</div>
+                </div>
+                
+                <div class="player-section" id="bot3-section">
+                    <h3>Bot 3</h3>
+                    <div class="cards" id="bot3-cards"></div>
+                    <div class="total" id="bot3-total">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="hit-btn" class="btn btn-action" aria-label="Kart çek (H tuşu)" disabled>Hit (H)</button>
+            <button id="stand-btn" class="btn btn-action" aria-label="Dur (S tuşu)" disabled>Stand (S)</button>
+            <button id="double-btn" class="btn btn-action" aria-label="İkiye katla (D tuşu)" disabled>Double (D)</button>
+        </div>
+
+        <div class="log-panel">
+            <h4>Oyun Akışı</h4>
+            <div id="game-log"></div>
+        </div>
+
+        <div id="reveal-modal" class="modal">
+            <div class="modal-content">
+                <h3>Deste Sıralaması Doğrulaması</h3>
+                <div class="reveal-section">
+                    <label>Dağıtılan Deste Sırası:</label>
+                    <textarea id="deck-order" readonly></textarea>
+                    <button id="verify-btn" class="btn btn-primary">Doğrula</button>
+                    <div id="verification-result"></div>
+                </div>
+                <button id="close-modal" class="btn">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
